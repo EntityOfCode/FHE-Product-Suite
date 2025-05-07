@@ -1,0 +1,17 @@
+name: Issue Automation
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled, assigned, unassigned]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Automatically add issues to project board
+      uses: alex-page/github-project-automation-plus@v0.8.1
+      with:
+        project: FHE Product Suite Development
+        column: Backlog
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
